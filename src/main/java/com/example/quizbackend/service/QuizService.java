@@ -12,6 +12,10 @@ import com.example.quizbackend.repository.QuestionRepository;
 import com.example.quizbackend.repository.QuizRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.quizbackend.entity.QuizEntity;
+import com.example.quizbackend.repository.QuizRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,6 +48,17 @@ public class QuizService {
     public QuizEntity getQuiz(Long quizId) {
         return quizRepository.findById(quizId)
                 .orElseThrow(() -> new NotFoundException("Quiz not found: " + quizId));
+    }
+    public List<QuizEntity> getAllQuizzesEntities() {
+        return quizRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public QuizEntity getQuizEntityWithQuestions(Long id) {
+        QuizEntity quiz = quizRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Quiz not found: " + id));
+        quiz.getQuestions().forEach(q -> q.getAnswers().size());
+        return quiz;
     }
 
     public QuizEntity updateQuizTitle(Long quizId, String title) {
