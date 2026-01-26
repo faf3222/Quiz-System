@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title th:text="${quiz.title}"></title>
+    <title th:text="${qv.quizTitle}">Quiz</title>
 </head>
 <body>
 
-<h1 th:text="${quiz.title}"></h1>
+<h2 th:text="${qv.quizTitle}">Quiz Title</h2>
+<p>
+    Question <span th:text="${qv.index + 1}">1</span> /
+    <span th:text="${qv.total}">1</span>
+</p>
 
-<form th:action="@{'/ui/quizzes/' + ${quiz.id} + '/submit'}" method="post">
-    <div th:each="q : ${quiz.questions}">
-        <h3 th:text="${q.text}"></h3>
+<h3 th:text="${qv.questionText}">Question text</h3>
 
-        <div th:each="a : ${q.answers}">
-            <label>
-                <input type="radio"
-                       th:name="${'q_' + q.id}"
-                       th:value="${a.id}">
-                <span th:text="${a.text}"></span>
-            </label>
-            <br>
-        </div>
+<form th:action="@{/quizzes/{id}/answer(id=${qv.quizId})}" method="post">
+    <input type="hidden" name="index" th:value="${qv.index}" />
 
-        <hr>
+    <div th:each="a : ${qv.answers}">
+        <label>
+            <input type="radio" name="answerId" th:value="${a.id}" required />
+            <span th:text="${a.text}">Answer</span>
+        </label>
+        <br/>
     </div>
 
-    <button type="submit">Submit</button>
+    <button type="submit">Next</button>
 </form>
 
-<p><a href="/ui/quizzes">Back to quizzes</a></p>
+<br/>
+<a th:href="@{/quizzes}">Back to quizzes</a>
 
 </body>
 </html>

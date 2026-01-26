@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Result</title>
 </head>
 <body>
 
-<h1 th:text="${quizTitle}"></h1>
-<h2 th:text="${'Score: ' + correct + ' / ' + total}"></h2>
+<h1>Result</h1>
 
-<div th:each="r : ${rows}">
-    <p><b>Question:</b> <span th:text="${r.questionText}"></span></p>
-    <p><b>Your answer:</b> <span th:text="${r.chosenText}"></span></p>
-    <p><b>Correct answer:</b> <span th:text="${r.correctText}"></span></p>
-    <p><b>Result:</b> <span th:text="${r.correct ? 'Correct' : 'Wrong'}"></span></p>
-    <hr>
-</div>
+<h2 th:text="${result.quizTitle}">Quiz</h2>
+<p>
+    Score: <b th:text="${result.score}">0</b> /
+    <b th:text="${result.total}">0</b>
+</p>
 
-<p><a href="/ui/quizzes">Go to quizzes</a></p>
+<a th:href="@{/quizzes}">Back to quizzes</a>
 
 </body>
 </html>
