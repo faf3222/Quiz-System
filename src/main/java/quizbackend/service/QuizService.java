@@ -123,4 +123,4 @@ public class QuizService {
     public int getTotalQuestions(Long quizId) {
         return (int) questionRepository.countByQuizId(quizId);
     }
-}
+} 
