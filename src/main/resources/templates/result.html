@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Result</title>
-</head>
+<head><title>Result</title></head>
 <body>
+<h1>Quiz Result</h1>
 
-<h1>Result</h1>
+<p th:if="${result.total == 0}">
+    No questions found for this quiz.
+</p>
 
-<h2 th:text="${result.quizTitle}">Quiz</h2>
-<p>
-    Score: <b th:text="${result.score}">0</b> /
-    <b th:text="${result.total}">0</b>
+<p th:if="${result.total > 0}">
+    Score: <span th:text="${result.score}"></span> /
+    <span th:text="${result.total}"></span>
 </p>
 
 <a th:href="@{/quizzes}">Back to quizzes</a>
-
 </body>
 </html>

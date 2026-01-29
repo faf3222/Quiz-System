@@ -1,0 +1,9 @@
+2026-01-29 10:06:52.899999+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "QUIZ" not found; SQL statement:
+INSERT INTO quiz (id, title) VALUES (4, 'Java Quiz') [42102-240]
+2026-01-29 10:07:20.747210+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select from[*]* quiz"; expected "identifier"; SQL statement:
+select from* quiz [42001-240]
+2026-01-29 10:07:32.695406+01:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select from[*]* Quiz"; expected "identifier"; SQL statement:
+select from* Quiz [42001-240]
